@@ -17,7 +17,7 @@ const Usuario = sequelize.define('Usuario', {
     allowNull: false,
     unique: true
   },
-  contrasena: {
+  contraseña: {
     type: DataTypes.STRING(255),
     allowNull: false
   },
@@ -31,11 +31,11 @@ const Usuario = sequelize.define('Usuario', {
 });
 
 Usuario.beforeCreate(async (usuario) => {
-  usuario.contrasena = await bcrypt.hash(usuario.contrasena, 10);
+  usuario.contraseña = await bcrypt.hash(usuario.contraseña, 10);
 });
 
-Usuario.prototype.verificarContrasena = async function(contrasena) {
-  return await bcrypt.compare(contrasena, this.contrasena);
+Usuario.prototype.verificarcontraseña = async function(contraseña) {
+  return await bcrypt.compare(contraseña, this.contraseña);
 };
 
 module.exports = Usuario;

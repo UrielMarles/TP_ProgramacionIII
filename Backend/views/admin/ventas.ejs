@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= titulo %></title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-book"></i>
+                <h1>Lenny Admin</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/admin/dashboard" class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="/admin/ventas" class="nav-link active"><i class="fas fa-shopping-cart"></i> Ventas</a></li>
+                <li><a href="/admin/login" class="nav-link"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h2><i class="fas fa-shopping-cart"></i> Historial de Ventas</h2>
+            </div>
+
+            <div class="ventas-stats">
+                <div class="stat-card">
+                    <i class="fas fa-receipt"></i>
+                    <div class="stat-info">
+                        <h3><%= ventas.length %></h3>
+                        <p>Total de Ventas</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-dollar-sign"></i>
+                    <div class="stat-info">
+                        <h3>$<%= ventas.reduce((sum, v) => sum + parseFloat(v.precioTotal), 0).toFixed(2) %></h3>
+                        <p>Ingresos Totales</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="stat-info">
+                        <h3>$<%= ventas.length > 0 ? (ventas.reduce((sum, v) => sum + parseFloat(v.precioTotal), 0) / ventas.length).toFixed(2) : 0 %></h3>
+                        <p>Promedio por Venta</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (ventas.length > 0) { %>
+                            <% ventas.forEach(venta => { %>
+                            <tr>
+                                <td>#<%= venta.id %></td>
+                                <td><%= venta.nombreCliente %></td>
+                                <td><%= new Date(venta.fecha).toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }) %></td>
+                                <td class="precio-destacado">$<%= venta.precioTotal %></td>
+                                <td>
+                                    <button onclick="verDetalleVenta('<%= venta.id %>')" class="btn btn-sm btn-info">
+                                        <i class="fas fa-eye"></i> Ver Detalle
+                                    </button>
+                                </td>
+                            </tr>
+                            <% }); %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="5" class="text-center">No hay ventas registradas</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Lenny - Sistema de gestión de Libros y Juegos de Mesa © 2025</p>
+        <p>Desarrollado por: Uriel Marles y Nicanor Gatti</p>
+    </footer>
+
+    <!-- Modal detalle venta -->
+    <div id="modalDetalleVenta" class="modal">
+        <div class="modal-content modal-large">
+            <span class="close" onclick="cerrarModalDetalle()">&times;</span>
+            <h3><i class="fas fa-receipt"></i> Detalle de Venta</h3>
+            <div id="contenidoDetalle"></div>
+        </div>
+    </div>
+
+    <script>
+        async function verDetalleVenta(id) {
+            try {
+                const response = await fetch(`/api/ventas/${id}`);
+                const venta = await response.json();
+                
+                let html = `
+                    <div class="detalle-venta">
+                        <div class="detalle-header">
+                            <p><strong>ID Venta:</strong> #${venta.id}</p>
+                            <p><strong>Cliente:</strong> ${venta.nombreCliente}</p>
+                            <p><strong>Fecha:</strong> ${new Date(venta.fecha).toLocaleDateString('es-AR', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric', 
+                                hour: '2-digit', 
+                                minute: '2-digit' 
+                            })}</p>
+                        </div>
+                        
+                        <h4>Productos:</h4>
+                        <table class="table-detalle">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio Unit.</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+                
+                venta.detalles.forEach(detalle => {
+                    const tipoIcono = detalle.tipoProducto === 'libro' ? 
+                        '<i class="fas fa-book"></i>' : 
+                        '<i class="fas fa-dice"></i>';
+                    
+                    html += `
+                        <tr>
+                            <td>${tipoIcono} ${detalle.tipoProducto === 'libro' ? 'Libro' : 'Juego'}</td>
+                            <td>${detalle.nombreProducto}</td>
+                            <td>${detalle.cantidad}</td>
+                            <td>$${detalle.precioUnitario}</td>
+                            <td>$${detalle.subtotal}</td>
+                        </tr>
+                    `;
+                });
+                
+                html += `
+                            </tbody>
+                            <tfoot>
+                                <tr class="total-row">
+                                    <td colspan="4" class="text-right"><strong>TOTAL:</strong></td>
+                                    <td><strong>$${venta.precioTotal}</strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                `;
+                
+                document.getElementById('contenidoDetalle').innerHTML = html;
+                document.getElementById('modalDetalleVenta').style.display = 'block';
+            } catch (error) {
+                alert('Error al cargar el detalle de la venta');
+                console.error(error);
+            }
+        }
+        
+        function cerrarModalDetalle() {
+            document.getElementById('modalDetalleVenta').style.display = 'none';
+        }
+        
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('modalDetalleVenta');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

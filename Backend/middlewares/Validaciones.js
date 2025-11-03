@@ -91,9 +91,9 @@ const validarVenta = (req, res, next) => {
 };
 
 const validarLogin = (req, res, next) => {
-  const { correo, contrasena } = req.body;
+  const { correo, contraseña } = req.body;
   
-  if (!correo || !contrasena) {
+  if (!correo || !contraseña) {
     return res.status(400).json({ error: 'Correo y contraseña son requeridos' });
   }
   

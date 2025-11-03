@@ -2,7 +2,7 @@ const Usuario = require('../models/Usuario');
 
 const login = async (req, res) => {
   try {
-    const { correo, contrasena } = req.body;
+    const { correo, contraseña } = req.body;
 
     const usuario = await Usuario.findOne({ where: { correo, activo: true } });
     
@@ -10,9 +10,9 @@ const login = async (req, res) => {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
 
-    const contrasenaValida = await usuario.verificarContrasena(contrasena);
+    const contraseñaValida = await usuario.verificarcontraseña(contraseña);
     
-    if (!contrasenaValida) {
+    if (!contraseñaValida) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
 
@@ -32,7 +32,7 @@ const login = async (req, res) => {
 
 const crearUsuario = async (req, res) => {
   try {
-    const { nombre, correo, contrasena } = req.body;
+    const { nombre, correo, contraseña } = req.body;
 
     const usuarioExiste = await Usuario.findOne({ where: { correo } });
     if (usuarioExiste) {
@@ -42,7 +42,7 @@ const crearUsuario = async (req, res) => {
     const usuario = await Usuario.create({
       nombre,
       correo,
-      contrasena,
+      contraseña,
       activo: true
     });
 

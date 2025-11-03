@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= titulo %></title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <% if (typeof mostrarNav !== 'undefined' && mostrarNav) { %>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-book"></i>
+                <h1>Lenny Admin</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/admin/dashboard" class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="/admin/ventas" class="nav-link"><i class="fas fa-shopping-cart"></i> Ventas</a></li>
+                <li><a href="/admin/login" class="nav-link"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+            </ul>
+        </div>
+    </nav>
+    <% } %>
+
+    <main class="main-content">
+        <%- body %>
+    </main>
+
+    <footer class="footer">
+        <p>Lenny - Sistema de gestión de Libros y Juegos de Mesa © 2025</p>
+        <p>Desarrollado por: Uriel Marles y Nicanor Rigatti</p>
+    </footer>
+
+    <script src="/js/admin.js"></script>
+</body>
+</html>
