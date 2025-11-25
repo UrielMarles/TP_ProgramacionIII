@@ -197,6 +197,7 @@ body {
 .btn-block {
     width: 100%;
     justify-content: center;
+    margin-TOP: 5px;
 }
 
 /* ==================== TABLAS ==================== */
