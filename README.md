@@ -15,7 +15,7 @@
 - [API Endpoints](#api-endpoints)
 - [Variables de Entorno](#variables-de-entorno)
 - [Funcionalidades](#funcionalidades)
-- [Autores](#autores)
+- [Autor](#autor)
 
 ---
 

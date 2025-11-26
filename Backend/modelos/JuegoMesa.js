@@ -18,7 +18,6 @@ const JuegoMesa = sequelize.define('JuegoMesa', {
   categoria: {
     type: DataTypes.STRING(100),
     allowNull: false
-    // Ejemplo: 'Estrategia', 'Familiar', 'Party', 'Cartas', 'Cooperativo', etc.
   },
   complejidad: {
     type: DataTypes.ENUM('Baja', 'Media', 'Alta'),
