@@ -389,10 +389,11 @@ body {
     margin-bottom: 2rem;
 }
 
-.login-header i {
-    font-size: 4rem;
-    color: var(--info-color);
-    margin-bottom: 1rem;
+.login-logo {
+    width: 6rem;
+    height: 6rem;
+    margin: 0 auto 1rem auto;
+    display: block;
 }
 
 .login-header h1 {

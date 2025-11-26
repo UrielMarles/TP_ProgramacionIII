@@ -1,4 +1,4 @@
-import { BookOpen, Github, Mail } from 'lucide-react';
+import { Github, Mail } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
-                <BookOpen className="w-6 h-6 text-white" />
+                <img src="/logo.svg" alt="Lenny Logo" className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold text-white"> Lenny </h3>
             </div>

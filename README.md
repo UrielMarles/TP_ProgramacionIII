@@ -68,7 +68,7 @@
 
 ```
 lenny/
-├── lenny-backend/          # Servidor Backend
+├── Backend/          # Servidor Backend
 │   ├── config/             # Configuración de BD
 │   ├── controllers/        # Lógica de negocio
 │   ├── models/             # Modelos Sequelize
@@ -82,7 +82,7 @@ lenny/
 │   ├── app.js              # Punto de entrada
 │   └── package.json
 │
-└── lenny-frontend/         # Cliente Frontend
+└── Frontend/         # Cliente Frontend
     ├── src/
     │   ├── components/     # Componentes React
     │   │   ├── common/

@@ -5,5 +5,6 @@ const { validarVenta } = require('../middlewares/Validaciones');
 
 router.get('/', ventaController.listarVentas);
 router.post('/', validarVenta, ventaController.crearVenta);
+router.get('/:id', ventaController.obtenerVenta);
 
 module.exports = router;

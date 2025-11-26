@@ -16,7 +16,7 @@ const Navbar = () => {
                 <div className="flex justify-between items-center py-4">
                     <Link to="/productos" className="flex items-center space-x-3 group">
                         <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                            <BookOpen className="w-7 h-7 text-white" />
+                            <img src="/logo.svg" alt="Lenny Logo" className="w-7 h-7" />
                         </div>
                         <div>
                             <h1 className="text-2xl font-bold text-gray-800 dark:text-white">

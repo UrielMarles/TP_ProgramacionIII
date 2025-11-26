@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { BookOpen, ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 const Welcome = () => {
   const [nombre, setNombre] = useState('');
@@ -32,7 +32,7 @@ const Welcome = () => {
         {/* Logo animado */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-primary-500 to-primary-700 rounded-3xl shadow-2xl mb-6 transform hover:scale-110 transition-transform duration-300">
-            <BookOpen className="w-14 h-14 text-white" />
+            <img src="/logo.svg" alt="Lenny Logo" className="w-14 h-14" />
           </div>
           <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-3">
             Lenny
