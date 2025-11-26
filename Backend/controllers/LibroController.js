@@ -1,4 +1,4 @@
-const  Libro  = require('../models/Libro');
+const Libro = require('../modelos/Libro');
 
 const listarLibros = async (req, res) => {
   try {
@@ -23,8 +23,14 @@ const listarLibros = async (req, res) => {
       order: [['id', 'DESC']]
     });
 
+    // Agregar tipo a cada libro
+    const librosConTipo = rows.map(libro => ({
+      ...libro.toJSON(),
+      tipo: 'libro'
+    }));
+
     res.json({
-      libros: rows,
+      libros: librosConTipo,
       totalLibros: count,
       totalPaginas: Math.ceil(count / limit),
       paginaActual: page
@@ -34,14 +40,17 @@ const listarLibros = async (req, res) => {
   }
 };
 
-
 const obtenerLibro = async (req, res) => {
   try {
     const libro = await Libro.findByPk(req.params.id);
     if (!libro) {
       return res.status(404).json({ error: 'Libro no encontrado' });
     }
-    res.json(libro);
+    
+    res.json({
+      ...libro.toJSON(),
+      tipo: 'libro'
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -88,7 +97,10 @@ const crearLibro = async (req, res) => {
       activo: true
     });
 
-    res.status(201).json(libro);
+    res.status(201).json({
+      ...libro.toJSON(),
+      tipo: 'libro'
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -139,7 +151,10 @@ const actualizarLibro = async (req, res) => {
       stock
     });
 
-    res.json(libro);
+    res.json({
+      ...libro.toJSON(),
+      tipo: 'libro'
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -153,7 +168,10 @@ const cambiarEstado = async (req, res) => {
     }
 
     await libro.update({ activo: !libro.activo });
-    res.json(libro);
+    res.json({
+      ...libro.toJSON(),
+      tipo: 'libro'
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

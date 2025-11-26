@@ -4,13 +4,13 @@ import { CATEGORIES, CATEGORY_LABELS } from '../../utils/constants';
 const CategoryTabs = ({ activeCategory, onCategoryChange }) => {
   const categories = [
     {
-      id: CATEGORIES.LIBROS,
-      label: CATEGORY_LABELS[CATEGORIES.LIBROS].plural,
+      id: CATEGORIES.LIBRO,
+      label: CATEGORY_LABELS[CATEGORIES.LIBRO].plural,
       icon: BookOpen,
     },
     {
-      id: CATEGORIES.JUEGOS,
-      label: CATEGORY_LABELS[CATEGORIES.JUEGOS].plural,
+      id: CATEGORIES.JUEGO,
+      label: CATEGORY_LABELS[CATEGORIES.JUEGO].plural,
       icon: Dice6,
     },
   ];

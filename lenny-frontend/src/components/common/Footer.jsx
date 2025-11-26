@@ -1,5 +1,4 @@
 import { BookOpen, Github, Mail } from 'lucide-react';
-import { APP_NAME, STUDENTS } from '../../utils/constants';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -14,7 +13,7 @@ const Footer = () => {
               <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
                 <BookOpen className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white">{APP_NAME}</h3>
+              <h3 className="text-xl font-bold text-white"> Lenny </h3>
             </div>
             <p className="text-sm text-gray-400">
               Tu tienda favorita de libros y juegos de mesa. Descubre, compra y disfruta.
@@ -63,10 +62,10 @@ const Footer = () => {
 
         <div className="border-t border-gray-800 mt-8 pt-6 text-center">
           <p className="text-sm text-gray-400">
-            © {currentYear} {APP_NAME} - Todos los derechos reservados
+            © {currentYear} Lenny - Todos los derechos reservados
           </p>
           <p className="text-xs text-gray-500 mt-2">
-            Desarrollado por: {STUDENTS}
+            Desarrollado por: Uriel Marles
           </p>
         </div>
       </div>

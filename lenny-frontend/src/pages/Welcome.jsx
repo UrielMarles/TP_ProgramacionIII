@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { BookOpen, ArrowRight, Sparkles } from 'lucide-react';
-import { APP_NAME } from '../utils/constants';
 
 const Welcome = () => {
   const [nombre, setNombre] = useState('');
@@ -36,7 +35,7 @@ const Welcome = () => {
             <BookOpen className="w-14 h-14 text-white" />
           </div>
           <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-3">
-            {APP_NAME}
+            Lenny
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400">
             Libros y Juegos de Mesa

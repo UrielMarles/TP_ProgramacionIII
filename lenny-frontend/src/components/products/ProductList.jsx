@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import { ChevronLeft, ChevronRight, Loader } from 'lucide-react';
 

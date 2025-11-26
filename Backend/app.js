@@ -3,7 +3,7 @@ const express = require('express');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const path = require('path');
-const { sequelize } = require('./models/Index');
+const { sequelize } = require('./modelos/Index');
 
 // Inicialización de la aplicación
 const app = express();

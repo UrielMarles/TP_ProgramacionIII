@@ -12,6 +12,14 @@ const CartItem = ({ item }) => {
     return item.tipo === 'libro' ? '📚 Libro' : '🎲 Juego';
   };
 
+  const getDetalles = () => {
+    if (item.tipo === 'libro') {
+      return `${item.autor || ''} • ${item.genero || ''}`;
+    } else {
+      return `${item.categoria || ''} • ${item.minJugadores || ''}-${item.maxJugadores || ''} jugadores`;
+    }
+  };
+
   const subtotal = item.precio * item.cantidad;
 
   return (
@@ -56,11 +64,7 @@ const CartItem = ({ item }) => {
 
           {/* Detalles adicionales */}
           <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-            {item.tipo === 'libro' ? (
-              <p>{item.autor} • {item.genero}</p>
-            ) : (
-              <p>{item.categoria} • {item.minJugadores}-{item.maxJugadores} jugadores</p>
-            )}
+            <p>{getDetalles()}</p>
           </div>
         </div>
 

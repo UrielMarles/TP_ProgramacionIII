@@ -1,4 +1,4 @@
-const JuegoMesa  = require('../models/JuegoMesa');
+const JuegoMesa = require('../modelos/JuegoMesa');
 
 const listarJuegos = async (req, res) => {
   try {
@@ -27,8 +27,14 @@ const listarJuegos = async (req, res) => {
       order: [['id', 'DESC']]
     });
 
+    // Agregar tipo a cada juego
+    const juegosConTipo = rows.map(juego => ({
+      ...juego.toJSON(),
+      tipo: 'juego'
+    }));
+
     res.json({
-      juegos: rows,
+      juegos: juegosConTipo,
       totalJuegos: count,
       totalPaginas: Math.ceil(count / limit),
       paginaActual: page
@@ -44,7 +50,11 @@ const obtenerJuego = async (req, res) => {
     if (!juego) {
       return res.status(404).json({ error: 'Juego no encontrado' });
     }
-    res.json(juego);
+    
+    res.json({
+      ...juego.toJSON(),
+      tipo: 'juego'
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -95,13 +105,15 @@ const crearJuego = async (req, res) => {
       activo: true
     });
 
-    res.status(201).json(juego);
+    res.status(201).json({
+      ...juego.toJSON(),
+      tipo: 'juego'
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-// Actualizar juego
 const actualizarJuego = async (req, res) => {
   try {
     const juego = await JuegoMesa.findByPk(req.params.id);
@@ -151,7 +163,10 @@ const actualizarJuego = async (req, res) => {
       stock
     });
 
-    res.json(juego);
+    res.json({
+      ...juego.toJSON(),
+      tipo: 'juego'
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -165,7 +180,10 @@ const cambiarEstado = async (req, res) => {
     }
 
     await juego.update({ activo: !juego.activo });
-    res.json(juego);
+    res.json({
+      ...juego.toJSON(),
+      tipo: 'juego'
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

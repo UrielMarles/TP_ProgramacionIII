@@ -1,4 +1,4 @@
-const { Libro, JuegoMesa, Venta, VentaDetalle, Usuario } = require('../models/Index');
+const { Libro, JuegoMesa, Venta, VentaDetalle, Usuario } = require('../modelos/Index');
 
 const mostrarLogin = (req, res) => {
   res.render('admin/login', { 

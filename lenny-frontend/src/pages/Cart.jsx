@@ -38,6 +38,9 @@ const Cart = () => {
         }))
       };
 
+      console.log('📦 Datos de venta a enviar:', ventaData);
+      console.log('📦 Productos en carrito:', cart);
+
       // Crear la venta
       const ventaCreada = await crearVenta(ventaData);
 
@@ -48,7 +51,7 @@ const Cart = () => {
       clearCart();
     } catch (err) {
       setError(err.message || 'Error al procesar la compra. Por favor, intenta nuevamente.');
-      console.error('Error al crear venta:', err);
+      console.error('❌ Error al crear venta:', err);
     } finally {
       setLoading(false);
     }
@@ -146,12 +149,17 @@ const Cart = () => {
             <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
               Resumen de productos:
             </h4>
-            <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-              {cart.map((item) => (
-                <li key={`${item.tipo}-${item.id}`}>
-                  • {item.tipo === 'libro' ? item.titulo : item.nombre} (x{item.cantidad})
-                </li>
-              ))}
+            <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+              {cart.map((item) => {
+                const nombre = item.tipo === 'libro' ? item.titulo : item.nombre;
+                const tipoIcon = item.tipo === 'libro' ? '📚' : '🎲';
+                return (
+                  <li key={`${item.tipo}-${item.id}`} className="flex items-start">
+                    <span className="mr-2">{tipoIcon}</span>
+                    <span>{nombre} (x{item.cantidad})</span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -173,7 +181,7 @@ const Cart = () => {
           </div>
         </div>
       </Modal>
-    </div>
+    </div> 
   );
 };
 

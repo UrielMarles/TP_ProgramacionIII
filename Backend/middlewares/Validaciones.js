@@ -75,7 +75,9 @@ const validarVenta = (req, res, next) => {
   
   for (const producto of productos) {
     if (!producto.tipo || !['libro', 'juego'].includes(producto.tipo)) {
-      return res.status(400).json({ error: 'Tipo de producto inválido' });
+      return res.status(400).json({ 
+        error: `Tipo de producto inválido: "${producto.tipo}". Debe ser "libro" o "juego"` 
+      });
     }
     
     if (!producto.id || isNaN(producto.id)) {
@@ -86,7 +88,6 @@ const validarVenta = (req, res, next) => {
       return res.status(400).json({ error: 'La cantidad debe ser un número positivo' });
     }
   }
-  
   next();
 };
 

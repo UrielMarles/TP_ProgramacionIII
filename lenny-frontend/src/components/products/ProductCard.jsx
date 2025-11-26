@@ -32,6 +32,7 @@ const ProductCard = ({ product, tipo }) => {
           <p><span className="font-semibold">Jugadores:</span> {product.minJugadores}-{product.maxJugadores}</p>
           <p><span className="font-semibold">Duración:</span> {product.duracionMinutos} min</p>
           <p><span className="font-semibold">Edad mínima:</span> {product.edadMinima}+</p>
+          {product.editorial && <p><span className="font-semibold">Editorial:</span> {product.editorial}</p>}
         </div>
       );
     }

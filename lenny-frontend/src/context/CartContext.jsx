@@ -43,8 +43,12 @@ export const CartProvider = ({ children }) => {
             : item
         );
       }
-
-      return [...prevCart, { ...product, tipo, cantidad: 1 }];
+      
+      return [...prevCart, { 
+        ...product, 
+        tipo: tipo,
+        cantidad: 1 
+      }];
     });
   };
 

@@ -2,7 +2,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart, BookOpen, LogIn } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import ThemeToggle from './ThemeToggle';
-import { APP_NAME, STUDENTS } from '../../utils/constants';
 
 const Navbar = () => {
     const { getCartCount } = useCart();
@@ -21,7 +20,7 @@ const Navbar = () => {
                         </div>
                         <div>
                             <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-                                {APP_NAME}
+                                Lenny
                             </h1>
                             <p className="text-xs text-gray-500 dark:text-gray-400">
                                 Libros y Juegos de Mesa
@@ -77,7 +76,7 @@ const Navbar = () => {
 
             <div className="bg-primary-600 dark:bg-primary-800 py-2">
                 <p className="text-center text-white text-sm font-medium">
-                    Desarrollado por: {STUDENTS}
+                    Desarrollado por: Uriel Marles
                 </p>
             </div>
         </nav>

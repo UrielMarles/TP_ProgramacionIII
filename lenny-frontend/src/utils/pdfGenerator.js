@@ -44,7 +44,7 @@ export const generateTicketPDF = (ventaData, customerName) => {
   doc.setFont(undefined, 'normal');
   
   ventaData.detalles.forEach((item) => {
-    const tipo = item.tipoProducto === 'libro' ? '📚' : '🎲';
+    const tipo = item.tipoProducto === 'libro' ? 'libro: ' : 'juego de mesa:';
     const linea1 = `${tipo} ${item.nombreProducto}`;
     const linea2 = `   ${item.cantidad} x $${item.precioUnitario} = $${item.subtotal}`;
     

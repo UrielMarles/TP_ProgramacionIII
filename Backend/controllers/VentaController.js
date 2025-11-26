@@ -1,4 +1,4 @@
-const { Venta, VentaDetalle, Libro, JuegoMesa } = require('../models/Index');
+const { Venta, VentaDetalle, Libro, JuegoMesa } = require('../modelos/Index');
 
 const crearVenta = async (req, res) => {
   try {

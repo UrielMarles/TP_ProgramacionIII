@@ -8,7 +8,7 @@ import { CATEGORIES } from '../utils/constants';
 import { AlertCircle } from 'lucide-react';
 
 const Products = () => {
-  const [activeCategory, setActiveCategory] = useState(CATEGORIES.LIBROS);
+  const [activeCategory, setActiveCategory] = useState(CATEGORIES.LIBRO);
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -35,7 +35,7 @@ const Products = () => {
     
     try {
       let response;
-      if (activeCategory === CATEGORIES.LIBROS) {
+      if (activeCategory === CATEGORIES.LIBRO) {
         response = await getLibros(currentPage, 12);
         setProducts(response.libros);
         setTotalPages(response.totalPaginas);
