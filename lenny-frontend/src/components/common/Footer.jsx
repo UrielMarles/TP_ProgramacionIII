@@ -52,7 +52,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-2">
                 <Github className="w-4 h-4 text-primary-400" />
-                <a href="#" className="text-gray-400 hover:text-primary-400 transition-colors duration-300">
+                <a href="https://github.com/UrielMarles/TP_ProgramacionIII" className="text-gray-400 hover:text-primary-400 transition-colors duration-300">
                   GitHub
                 </a>
               </li>
